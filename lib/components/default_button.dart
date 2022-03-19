@@ -14,8 +14,27 @@ class DefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => Pressed,
+    return SizedBox(
+      width: double.infinity,
+      height: getProportionateScreenHeight(56),
+      child: TextButton(
+        style: TextButton.styleFrom(
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          primary: Colors.white,
+          backgroundColor: kPrimaryColor,
+        ),
+        onPressed: Pressed ,
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: getProportionateScreenWidth(18),
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );/*TextButton(
+      onPressed:  Pressed,
       child: Text(
         text,
         style: TextStyle(
@@ -26,6 +45,6 @@ class DefaultButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20)),
           backgroundColor: kPrimaryColor),
-    );
+    );*/
   }
 }

@@ -4,6 +4,7 @@ import 'package:ecommerce_app/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/default_button.dart';
+import '../../sign_in/sign_in_screen.dart';
 
 class Body extends StatefulWidget {
 
@@ -61,11 +62,13 @@ class _BodyState extends State<Body> {
                           children: List.generate(splashData.length,
                               (index) => buildDot(index: index))),
                       Spacer(),
-                      SizedBox(
-                        width: double.infinity,
-                        height: getProportionateScreenHeight(56),
-                        child: DefaultButton(Pressed: (){} , text: 'Continue'),
-                      ),
+                       DefaultButton(
+                            Pressed: () {
+                              Navigator.pushNamed(
+                                  context, SignInScreen.routeName);
+                            },
+                            text: 'Continue'),
+
                        Spacer()
                     ],
                   ),
@@ -76,7 +79,6 @@ class _BodyState extends State<Body> {
     );
   }
 
-  // SplashContent ....
 
   AnimatedContainer buildDot({@required int index}) {
     return AnimatedContainer(
