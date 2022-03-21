@@ -1,9 +1,7 @@
-import 'package:ecommerce_app/constants.dart';
-import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
+
 import 'package:ecommerce_app/screens/sign_in/components/sign_in_form.dart';
 import 'package:ecommerce_app/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../components/no_account_text.dart';
 import '../../../components/social_card.dart';

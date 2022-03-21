@@ -27,6 +27,7 @@ class _SignFormState extends State<SignForm> {
     final _isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
     if (_isValid) {
+      print("valid");
       //this line triggers the onSaved on every TextFormField
       _formKey.currentState.save();
       Navigator.popAndPushNamed(context, LoginSuccessScreen.routeName);
@@ -70,13 +71,20 @@ class _SignFormState extends State<SignForm> {
                   ))
             ],
           ),
-          formError(errors: errors),
+          //formError(errors: errors),
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),
           DefaultButton(
-              text: 'Continue',
-              Pressed:_trySubmit,
+            text: 'Continue',
+            Pressed: () {
+              if (_formKey.currentState.validate()) {
+                _formKey.currentState.save();
+                // if all are valid then go to success screen
+                //KeyboardUtil.hideKeyboard(context);
+                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+              }
+            },
           ),
         ],
       ),
@@ -85,7 +93,9 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      onChanged: (value) {
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+      /*onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kPassNullError)) {
           setState(() {
             errors.remove(kPassNullError);
@@ -100,25 +110,14 @@ class _SignFormState extends State<SignForm> {
           });
         }
         return null;
-      },
+      },*/
       validator: (value) {
-        if (value.isEmpty && !errors.contains(kPassNullError)) {
-          setState(() {
-            errors.add(kPassNullError);
-          });
-          return '';
-        } else if (value.length < 8 &&
-            value.isNotEmpty &&
-            !errors.contains(kShortPassError)) {
-          setState(() {
-            errors.add(kShortPassError);
-          });
-          return "";
-        } else if (value.length > 12 && !errors.contains(kLongPassError)) {
-          setState(() {
-            errors.add(kLongPassError);
-          });
-          return '';
+        if (value.isEmpty) {
+          return 'Please Enter your password';
+        } else if (value.length < 8) {
+          return "Password is too short";
+        } else if (value.length > 12) {
+          return 'Password is too Long';
         }
         return null;
       },
@@ -134,8 +133,9 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       onSaved: (value) => Email = value,
-      onChanged: (value) {
+      /* onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kEmailNullError)) {
           setState(() {
             errors.remove(kEmailNullError);
@@ -147,18 +147,11 @@ class _SignFormState extends State<SignForm> {
           });
         }
         return null;
-      },
+      },*/
       validator: (value) {
-        if (value.isEmpty && !errors.contains(kEmailNullError)) {
-          setState(() {
-            errors.add(kEmailNullError);
-          });
+        if (value.isEmpty) {
           return 'Please Enter your email';
-        } else if (!emailValidatorRegExp.hasMatch(value) &&
-            !errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.add(kInvalidEmailError);
-          });
+        } else if (!emailValidatorRegExp.hasMatch(value)) {
           return 'Please Enter Valid Email';
         }
         return null;
@@ -172,3 +165,4 @@ class _SignFormState extends State<SignForm> {
     );
   }
 }
+
