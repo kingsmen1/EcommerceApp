@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/components/default_button.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:ecommerce_app/size_config.dart';
 import 'package:flutter/material.dart';

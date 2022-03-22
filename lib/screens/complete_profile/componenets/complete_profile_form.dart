@@ -4,6 +4,7 @@ import 'package:ecommerce_app/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/custom_suffix_icon.dart';
+import '../../../constants.dart';
 
 class CompleteProfileForm extends StatefulWidget {
   @override
@@ -17,21 +18,6 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   String _lastMame;
   String _phoneNumber;
   String _address;
-
-
-
-  String validateMobile(String value) {
-    String patttern = r'(^(?:[+9]1)?[0-9]{10,12}$)';
-    RegExp regExp = new RegExp(patttern);
-    if (value.length == 0) {
-      return 'Please enter mobile number';
-    }
-    else if (!regExp.hasMatch(value)) {
-      return 'Please enter valid mobile number';
-    }
-    return null;
-  }
-
 
   @override
   Widget build(BuildContext context) {

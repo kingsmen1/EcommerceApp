@@ -22,6 +22,20 @@ final headingStyle = TextStyle(
 
 const defaultDuration = Duration(milliseconds: 250);
 
+
+//phoneNumber regExp
+String validateMobile(String value) {
+  String patttern = r'(^(?:[+9]1)?[0-9]{10,12}$)';
+  RegExp regExp = new RegExp(patttern);
+  if (value.length == 0) {
+    return 'Please enter mobile number';
+  }
+  else if (!regExp.hasMatch(value)) {
+    return 'Please enter valid mobile number';
+  }
+  return null;
+}
+
 // Form Error
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");

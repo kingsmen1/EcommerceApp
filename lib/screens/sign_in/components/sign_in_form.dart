@@ -23,18 +23,6 @@ class _SignFormState extends State<SignForm> {
   final List<String> errors = [];
   bool passInVisible = false;
 
-  void _trySubmit() {
-    final _isValid = _formKey.currentState.validate();
-    FocusScope.of(context).unfocus();
-    if (_isValid) {
-      print("valid");
-      //this line triggers the onSaved on every TextFormField
-      _formKey.currentState.save();
-      Navigator.popAndPushNamed(context, LoginSuccessScreen.routeName);
-    } else {
-      print('invalid');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
