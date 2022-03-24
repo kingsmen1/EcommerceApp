@@ -121,6 +121,7 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onSaved: (value) => Email = value,
       /* onChanged: (value) {
