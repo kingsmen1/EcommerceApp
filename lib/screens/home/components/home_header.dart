@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/screens/cart/cart_screen.dart';
 import 'package:ecommerce_app/screens/home/components/search_box.dart';
+import 'package:ecommerce_app/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../size_config.dart';
@@ -20,7 +21,7 @@ class HomeHeader extends StatelessWidget {
         children: [
           SearchBox(),
           IconButtonWithCounter(svgSrc: "assets/icons/Cart Icon.svg", press: (){Navigator.pushNamed(context, CartScreen.routeName);} , ),
-          IconButtonWithCounter(svgSrc: "assets/icons/Bell.svg", numberOfItems: 3,press: (){} , ),
+          IconButtonWithCounter(svgSrc: "assets/icons/Bell.svg", numberOfItems: 3,press: (){Navigator.pushNamed(context, ProfileScreen.routeName);} , ),
         ],
       ),
     );
